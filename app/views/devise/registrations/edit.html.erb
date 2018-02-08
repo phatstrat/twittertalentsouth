@@ -1,0 +1,61 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <%= f.text_field :username, autofocus: true, class: "form-control", placeholder: "Username...." %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :name, class: "form-control", placeholder: "Name...." %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :location, class: "form-control", placeholder: "Location" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_area :bio, rows: 4, class: "form-control", placeholder: "Bio...." %>
+  </div>
+
+  <div class="form-group">
+    <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="form-group">
+    <i>(Leave blank if you dont want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "off", placeholder: "change password", class: "form-control" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "confirm password change" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.password_field :current_password, placeholder: "current password", autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <strong>Upload a Profile Picture:</strong>
+    <%= f.file_field :avatar %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update", class: "btn btn-success btn-lg btn-block" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-lg btn-block" %></p>
+
+<%= link_to "Back", :back %>
